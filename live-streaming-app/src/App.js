@@ -1,46 +1,23 @@
-// import React from "react";
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Home from "./components/Home";
-// import StreamingRoom from "./components/StreamingRoom";
-// import Header from "./components/Header";
-// import "./index.css";
+// In App.js
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/Login';  // Import Login correctly
 
-// function App() {
-//     return (
-//         <Router>
-//             <Header />
-//             <Routes>
-//                 <Route path="/" element={<Home />} />
-//                 <Route path="/streaming" element={<StreamingRoom />} />
-//             </Routes>
-//         </Router>
-//     );
-// }
-
-// export default App;
+import Header from './components/Header';
+import Home from './components/Home'; 
+import About from './components/About';  // Corrected the folder name
 
 
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import Home from "./components/Home";
-import About from "./components/About";
-import Contact from "./components/Contact";
-import StreamingRoom from "./components/StreamingRoom";
-
-const App = () => {
-    return (
-        <Router>
-            <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/streaming" element={<StreamingRoom />} />
-            </Routes>
-        </Router>
-    );
-};
+function App() {
+  return (
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/Login" element={<Login />} /> {/* Route for Login */}
+      </Routes>
+    </Router>
+  );
+}
 
 export default App;
-
