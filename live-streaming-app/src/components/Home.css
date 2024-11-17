@@ -1,0 +1,340 @@
+/* body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.home {
+  text-align: center;
+}
+
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, rgb(0, 0, 0), #040206);
+  color: white;
+  padding: 60px 20px;
+  flex-wrap: wrap;
+}
+
+.hero-content {
+  max-width: 500px;
+  text-align: left;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  padding: 12px 24px;
+  background-color: rgba(128, 128, 128, 0.21);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cta-button:hover {
+  background-color: grey;
+}
+
+.hero-video video {
+  max-width: 100%;
+  height:auto;
+  border-radius: 10px;
+}
+
+
+.features {
+  padding: 40px 20px;
+  background: white;
+}
+
+.features h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.features-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.feature {
+  max-width: 300px;
+  text-align: center;
+}
+
+.feature img {
+  width: 100px;
+  margin-bottom: 15px;
+}
+
+.feature h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 14px;
+  color: #555;
+}
+
+.about {
+  padding: 40px 20px;
+  background: #f4f4f4;
+}
+
+.about h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.about p {
+  font-size: 18px;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  color: #555;
+}
+
+.secondary-button {
+  padding: 10px 20px;
+  background-color: #040206;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.secondary-button:hover {
+  background-color: #040206;
+}
+
+
+.contact {
+  padding: 40px 20px;
+  background: white;
+}
+
+.contact h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.contact p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+} */
+
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color:black;
+}
+
+.home {
+  text-align: center;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, rgb(0, 0, 0), #151317);
+  color: white;
+  padding: 80px 60px;
+  flex-wrap: wrap;
+}
+
+.hero-content {
+  max-width: 50%; /* Set max-width to 50% to leave space for video */
+  text-align: left;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  padding: 12px 24px;
+  background-color: rgba(128, 128, 128, 0.21);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cta-button:hover {
+  background-color: grey;
+}
+
+.hero-video {
+  max-width: 45%;
+  padding-left: 20px;
+}
+
+.hero-video video {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* Features Section */
+.features {
+  padding: 40px 20px;
+  background: linear-gradient(90deg, #d3cdba, #040206);
+  background: #040206;
+  color: whitesmoke;
+}
+
+.features h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.features-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.feature {
+  max-width: 300px;
+  text-align: center;
+}
+
+.feature img {
+  width: 100px;
+  margin-bottom: 15px;
+}
+
+.feature h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 14px;
+  color:white;
+}
+
+/* About Section */
+.about {
+  padding: 40px 20px;
+  /* background: whitesmoke; */
+  background: linear-gradient(90deg, #a0967a, #040206);
+  color: #040206;
+}
+
+.about h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+
+}
+
+.about p {
+  
+  font-size: 18px;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  color: goldenrod
+}
+
+.secondary-button {
+  padding: 10px 20px;
+  background-color: #040206;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.secondary-button:hover {
+  background-color: #040206;
+}
+
+/* Contact Section */
+.contact {
+  padding: 40px 20px;
+  background: rgb(117, 111, 111);
+}
+
+.contact h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.contact p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+.moving-div-container {
+  position: relative; 
+  overflow: hidden;
+  width: 100%; 
+  height: auto; 
+  margin: 20px 0;
+  padding: 10px;
+  background: linear-gradient(90deg, #ada284, #040206); 
+  
+   background: linear-gradient(135deg, rgb(0, 0, 0), #151317);
+  color: #040206; 
+}
+
+.moving-div {
+  display: flex;
+  animation: moveLeft 10s linear infinite;
+  /* background: linear-gradient(90deg, #d3cdba, #040206); */
+  gap: 20px; 
+}
+
+.moving-div p {
+  white-space: nowrap; 
+  font-size: 16px;
+  padding: 0 30px;
+}
+@keyframes moveLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
