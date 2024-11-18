@@ -21,26 +21,30 @@
 
 
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import StreamingRoom from "./components/StreamingRoom";
+import HomePage from "./pages/home"; // ZEGOCLOUD's HomePage
+import RoomPage from "./pages/room"; // ZEGOCLOUD's RoomPage
 
 const App = () => {
     return (
-        <Router>
+        <>
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/streaming" element={<StreamingRoom />} />
+                {/* ZEGOCLOUD Routes */}
+                <Route path="/zego" element={<HomePage />} />
+                <Route path="/room/:roomId" element={<RoomPage />} />
             </Routes>
-        </Router>
+        </>
     );
 };
 
 export default App;
-
