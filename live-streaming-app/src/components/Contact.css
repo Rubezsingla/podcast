@@ -1,44 +1,159 @@
+/* Overall container for contact page */
 .contact {
-  text-align: center;
-  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-.contact h1 {
-  font-size: 36px;
+/* Title styling */
+h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Password section (input) */
+.password-section {
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.password-section input {
+  padding: 12px 15px;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add hover effect for password input */
+.password-section input:focus {
+  border: 1px solid #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+}
+
+/* Message input section */
+.input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
   margin-bottom: 20px;
 }
 
-.contact p {
-  font-size: 18px;
-  color: #040206;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.contact-form input,
-.contact-form textarea {
+.input-section input {
+  padding: 12px 15px;
+  font-size: 16px;
   width: 100%;
-  padding: 10px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  background-color: #ffffff;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-form button {
-  padding: 10px 20px;
-  background: #040206;
+.input-section input:focus {
+  border: 1px solid #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+}
+
+.input-section button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.contact-form button:hover {
-  background: #040206;
+.input-section button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.input-section button:active {
+  transform: translateY(0);
+}
+
+/* Notification area (messages) */
+.notification-area {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notification {
+  font-size: 14px;
+  color: #333;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 6px;
+  border-left: 5px solid #007bff;
+  position: relative;
+}
+
+.notification strong {
+  font-weight: 600;
+  color: #007bff;
+}
+
+.notification::after {
+  content: attr(data-time);
+  font-size: 12px;
+  color: #888;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}
+
+/* Blinking effect for notifications */
+.blinking-text {
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .input-section {
+    width: 90%;
+  }
+
+  .notification-area {
+    width: 90%;
+    max-width: none;
+  }
 }
