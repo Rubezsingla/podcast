@@ -1,73 +1,57 @@
+// src/components/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
+    const [isLoginFailed, setIsLoginFailed] = useState(false);
     const navigate = useNavigate();
 
-    // Handle login
-    const handleLogin = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
+
         try {
-            const response = await axios.post('http://localhost:5000/auth/login', {
-                email,
-                password,
+            const response = await fetch('http://localhost:5000/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
             });
 
-            if (response.data.success) {
-                // Store token and user info
-                localStorage.setItem('token', response.data.jwtToken); // Store JWT token
-                localStorage.setItem('user', response.data.name); // Store user name
+            const data = await response.json();
+            if (response.ok) {
+                // Save the JWT token
+                localStorage.setItem('token', data.token);
 
-                // Success message
-                toast.success(response.data.message);
-
-                // Redirect to home page after 1 second
-                setTimeout(() => {
-                    navigate('/home');
-                }, 1000);
+                // Navigate based on role
+                if (data.role === 'giver') {
+                    navigate('/contact'); // Redirect to podcast giver's page
+                } else {
+                    navigate('/home'); // Redirect to podcast taker's page
+                }
             } else {
-                toast.error(response.data.message);
+                setIsLoginFailed(true);
             }
-        } catch (err) {
-            toast.error('Login failed. Please check your credentials.');
-        } finally {
-            setLoading(false);
+        } catch (error) {
+            setIsLoginFailed(true);
         }
     };
 
     return (
-        <div className="login-container">
+        <div>
             <h2>Login</h2>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+                    <label>Username</label>
+                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
+                    <label>Password</label>
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Logging in...' : 'Login'}
-                </button>
+                {isLoginFailed && <p style={{ color: 'red' }}>Invalid credentials</p>}
+                <button type="submit">Login</button>
             </form>
-            <ToastContainer />
         </div>
     );
 };

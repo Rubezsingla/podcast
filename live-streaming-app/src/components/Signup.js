@@ -1,103 +1,87 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify';
-import { handleError, handleSuccess } from '../utils';
+// src/components/Signup.js
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Used for navigating to another page
+import axios from 'axios';  // Import axios
 
-function Signup() {
+const Signup = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [role, setRole] = useState('taker'); // Default is 'taker'
+    const [isFormValid, setIsFormValid] = useState(true);  // For checking form validity
+    const [loading, setLoading] = useState(false);  // For showing loading state
+    const navigate = useNavigate();  // For redirecting to login after successful signup
 
-    const [signupInfo, setSignupInfo] = useState({
-        name: '',
-        email: '',
-        password: ''
-    })
+    const handleSubmit = async (e) => {
+        e.preventDefault();  // Prevent form submission from refreshing the page
 
-    const navigate = useNavigate();
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        console.log(name, value);
-        const copySignupInfo = { ...signupInfo };
-        copySignupInfo[name] = value;
-        setSignupInfo(copySignupInfo);
-    }
-
-    const handleSignup = async (e) => {
-        e.preventDefault();
-        const { name, email, password } = signupInfo;
-        if (!name || !email || !password) {
-            return handleError('name, email and password are required')
+        // Validate form fields
+        if (!username || !password) {
+            setIsFormValid(false);  // Set form invalid if fields are empty
+            return;
         }
+
         try {
-            const url = `https://deploy-mern-app-1-api.vercel.app/auth/signup`;
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(signupInfo)
+            setLoading(true);  // Start loading when the form is submitted
+
+            // Sending signup data to backend using axios
+            const response = await axios.post('http://localhost:5000/api/auth/signup', {
+                username,
+                password,
+                role,
             });
-            const result = await response.json();
-            const { success, message, error } = result;
-            if (success) {
-                handleSuccess(message);
-                setTimeout(() => {
-                    navigate('/login')
-                }, 1000)
-            } else if (error) {
-                const details = error?.details[0].message;
-                handleError(details);
-            } else if (!success) {
-                handleError(message);
+
+            // If signup is successful (status 201), navigate to login page
+            if (response.status === 201) {
+                navigate('/login');
             }
-            console.log(result);
-        } catch (err) {
-            handleError(err);
+
+        } catch (error) {
+            setLoading(false);  // Stop loading after request completes
+            if (error.response) {
+                // Display server-side error message if any
+                alert(error.response.data.message);
+            } else {
+                // Display generic server error if response is not available
+                alert('Server error during signup');
+            }
+        } finally {
+            setLoading(false);  // Stop loading once the request is done
         }
-    }
+    };
+
     return (
-        <div className='container'>
-            <h1>Signup</h1>
-            <form onSubmit={handleSignup}>
+        <div>
+            <h2>Signup</h2>
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor='name'>Name</label>
+                    <label>Username</label>
                     <input
-                        onChange={handleChange}
-                        type='text'
-                        name='name'
-                        autoFocus
-                        placeholder='Enter your name...'
-                        value={signupInfo.name}
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}  // Update username state
                     />
                 </div>
                 <div>
-                    <label htmlFor='email'>Email</label>
+                    <label>Password</label>
                     <input
-                        onChange={handleChange}
-                        type='email'
-                        name='email'
-                        placeholder='Enter your email...'
-                        value={signupInfo.email}
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}  // Update password state
                     />
                 </div>
                 <div>
-                    <label htmlFor='password'>Password</label>
-                    <input
-                        onChange={handleChange}
-                        type='password'
-                        name='password'
-                        placeholder='Enter your password...'
-                        value={signupInfo.password}
-                    />
+                    <label>Role</label>
+                    <select value={role} onChange={(e) => setRole(e.target.value)}>  // Update role state
+                        <option value="taker">Podcast Taker</option>
+                        <option value="giver">Podcast Giver</option>
+                    </select>
                 </div>
-                <button type='submit'>Signup</button>
-                <span>Already have an account ?
-                    <Link to="/login">Login</Link>
-                </span>
+                {!isFormValid && <p style={{ color: 'red' }}>Please fill in all fields</p>}
+                <button type="submit" disabled={loading}>Sign Up</button>  {/* Disable button when loading */}
+                {loading && <p>Loading...</p>}  {/* Show loading text */}
             </form>
-            <ToastContainer />
         </div>
-    )
-}
+    );
+};
 
-export default Signup
-
- 
+export default Signup;
